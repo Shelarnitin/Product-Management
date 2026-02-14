@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-const productSchema = new mongoose.Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-        },
-    },
-    { timestamps: true}
-)
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB Connected");
+  } catch (error) {
+    console.error("Failed to connect MongoDB...!",error);
+    process.exit(1);
+  }
+};
 
-module.exports = mongoose.model("Product", productSchema);
+export default connectDB;
