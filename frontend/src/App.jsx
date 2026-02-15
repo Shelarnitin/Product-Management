@@ -3,6 +3,8 @@ import { getProducts } from "./api/productApi";
 import ProductForm from "./components/ProductForm";
 import ProductList from "./components/ProductList";
 
+import "./App.css"
+
 function App() {
   const [products, setProducts] = useState([]);
   const [editProduct, setEditProduct] = useState(null);
@@ -17,7 +19,7 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className="container">
       <h1>Product Management</h1>
 
       <ProductForm

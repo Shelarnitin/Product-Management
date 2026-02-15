@@ -53,9 +53,10 @@ export default function ProductForm({ refresh, editProduct, setEditProduct}) {
             <button>{editProduct ? "Update" : "Add"}</button>
 
             {editProduct && (
-                <button type="button" onClick={() => setEditProduct(null)}>
-                    Cancel
+                <button className="btn-add">
+                  {editProduct ? "Update" : "Add"}
                 </button>
+
             )}
 
         </form>
