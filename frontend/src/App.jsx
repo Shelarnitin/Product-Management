@@ -1,14 +1,38 @@
-import { useState } from 'react'
-import './App.css'
+import { useEffect, useState } from "react";
+import { getProducts } from "./api/productApi";
+import ProductForm from "./components/ProductForm";
+import ProductList from "./components/ProductList";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState([]);
+  const [editProduct, setEditProduct] = useState(null);
+
+  const loadProducts = async () => {
+    const res = await getProducts();
+    setProducts(res.data);
+  };
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
 
   return (
-    <>
-      <h1>Hello</h1>
-    </>
-  )
+    <div style={{ padding: 20 }}>
+      <h1>Product Management</h1>
+
+      <ProductForm
+        refresh={loadProducts}
+        editProduct={editProduct}
+        setEditProduct={setEditProduct}
+      />
+
+      <ProductList
+        products={products}
+        refresh={loadProducts}
+        setEditProduct={setEditProduct}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
