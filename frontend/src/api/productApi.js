@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API = "http://localhost:8000/api/products";
+const API = "https://product-management-3-0z6j.onrender.com/api/products";
 
 export const getProducts = () => axios.get(API)
 export const createProduct = (data) => axios.post(API, data)
